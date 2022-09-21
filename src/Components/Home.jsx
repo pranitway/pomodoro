@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
@@ -19,7 +19,7 @@ const Home = () => {
     };
     useEffect(() => {
         if (user == null) {
-            navigate("/login");
+            navigate("/");
         }
     }, [user]);
     return (
@@ -54,7 +54,7 @@ const Home = () => {
                             </div>
                             <div>
                                 {user?.displayName ? (
-                                    <NavLink to="/login">
+                                    <NavLink to="/">
                                         <button
                                             className="btn btn-danger"
                                             onClick={handleSignOut}
@@ -63,7 +63,7 @@ const Home = () => {
                                         </button>
                                     </NavLink>
                                 ) : (
-                                    <NavLink to="/login">
+                                    <NavLink to="/">
                                         <button className="btn btn-dark">
                                             Login
                                         </button>
@@ -74,8 +74,12 @@ const Home = () => {
                     </div>
                     <div className="card-body">
                         <Routes>
+                            {/* <Route
+                                path="/"
+                                element={<Navigate to="/login" replace />}
+                            ></Route> */}
                             <Route
-                                path="/login"
+                                path="/"
                                 element={<LoginForm></LoginForm>}
                             ></Route>
                             <Route
